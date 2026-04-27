@@ -1,0 +1,32 @@
+# ─── Compiled Java Classes ───
+WebContent/WEB-INF/classes/
+
+# ─── WAR File ───
+*.war
+
+# ─── Database Credentials (never push these) ───
+src/util/DBConnection.java
+
+# ─── IDE Files ───
+.classpath
+.project
+.settings/
+*.launch
+.idea/
+*.iml
+nbproject/
+nb-configuration.xml
+
+# ─── OS Files ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Logs ───
+*.log
+logs/
+
+# ─── Tomcat Runtime Files ───
+*.pid
+work/
+temp/

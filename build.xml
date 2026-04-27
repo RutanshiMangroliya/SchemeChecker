@@ -1,0 +1,44 @@
+<project name="SchemeChecker" default="war" basedir=".">
+    <property environment="env"/>
+    <property name="tomcat.home" value="C:/apache-tomcat-10.x"/>
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="WebContent"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="war.file" value="${build.dir}/SchemeChecker.war"/>
+
+    <path id="classpath">
+        <pathelement location="${tomcat.home}/lib/jakarta.servlet-api.jar"/>
+        <fileset dir="${web.dir}/WEB-INF/lib" includes="*.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" debug="true">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="war" depends="compile">
+        <war destfile="${war.file}" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}">
+                <exclude name="WEB-INF/web.xml"/>
+            </fileset>
+            <classes dir="${classes.dir}"/>
+        </war>
+        <echo message="WAR file created at ${war.file}"/>
+    </target>
+
+    <target name="deploy" depends="war">
+        <copy file="${war.file}" todir="${tomcat.home}/webapps"/>
+        <echo message="Deployed to ${tomcat.home}/webapps"/>
+    </target>
+</project>
