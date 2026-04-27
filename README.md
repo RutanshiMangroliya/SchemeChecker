@@ -1,4 +1,4 @@
-# 🇮🇳 Digital Government Scheme Eligibility Checker
+# Digital Government Scheme Eligibility Checker
 
 A web application that helps Indian citizens find government schemes they are eligible for based on their personal details like age, income, gender, and category.
 
